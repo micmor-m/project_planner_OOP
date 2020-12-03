@@ -15,7 +15,11 @@ class DOMHelper {
   }
 }
 
-class Tooltip {}
+class Tooltip {
+  show() {
+    console.log("The tooltip......");
+  }
+}
 
 //to convert the element lists in to an object
 class ProjectItem {
@@ -23,11 +27,22 @@ class ProjectItem {
   constructor(id, updateProjectListFunction, type) {
     this.id = id;
     this.updateProjectListHandler = updateProjectListFunction;
-    this.connectSwitchButton();
-    this.connectMoreInfoButton(type);
+    this.connectSwitchButton(type);
+    this.connectMoreInfoButton();
   }
 
-  connectMoreInfoButton() {}
+  showMoreInfoHandler() {
+    const tooltip = new Tooltip();
+    tooltip.show();
+  }
+
+  connectMoreInfoButton() {
+    const projectItemElement = document.getElementById(this.id);
+    const moreInfoBtn = projectItemElement.querySelector(
+      "button:first-of-type"
+    );
+    moreInfoBtn.addEventListener("click", this.showMoreInfoHandler);
+  }
 
   connectSwitchButton(type) {
     //since I have available the id of the item I can get all li element by id

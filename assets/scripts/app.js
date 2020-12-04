@@ -8,8 +8,6 @@ class DOMHelper {
   static moveElement(elementId, newDestinationSelector) {
     const element = document.getElementById(elementId);
     const destinationElement = document.querySelector(newDestinationSelector);
-    console.log(element);
-    console.log(destinationElement);
     destinationElement.append(element);
   }
 }
@@ -125,7 +123,6 @@ class ProjectList {
         new ProjectItem(prjItem.id, this.switchProject.bind(this), this.type)
       );
     }
-    console.log(this.projects);
   }
 
   setSwitchHandlerFunction(switchHandlerFunction) {
@@ -144,14 +141,11 @@ class ProjectList {
 
   switchProject(projectId) {
     //1 add the project to the other instance of ProjectList
-    console.log(projectId);
-    console.log("This projects before filter", this.projects);
     this.switchHandler(this.projects.find((elem) => elem.id === projectId));
     //2 remove the element from the projects array
     // const projectIndex = this.projects.indexOf(elem => {elem.id === projectId})
     // this.projects.splice(projectIndex, 1)
     this.projects = this.projects.filter((elem) => elem.id !== projectId);
-    console.log("This projects after filter", this.projects);
   }
 }
 

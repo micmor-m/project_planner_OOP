@@ -14,27 +14,60 @@ class DOMHelper {
   }
 }
 
-class Tooltip {
-  //use arrow function here as alternative to use the .bind method
-  //to pass the right this element to detach
-  detach = () => {
-    this.element.remove();
-    //alterative working also in older browser
-    //this.element.parentElement.removeChild(this.element)
-  };
+class Component {
+  constructor(hostElementId, insertBefore = false) {
+    if (hostElementId) {
+      this.hostElement = document.getElementById(hostElementId);
+    } else {
+      this.hostElement = document.body;
+    }
+    this.insertBefore = insertBefore;
+  }
+
+  detach() {
+    if (this.element) {
+      this.element.remove();
+      //alterative working also in older browser
+      //this.element.parentElement.removeChild(this.element)
+    }
+  }
 
   attach() {
+    // document.body.append(this.element);
+    this.hostElement.insertAdjacentElement(
+      this.insertBefore ? "afterbegin" : "beforeend",
+      this.element
+    );
+  }
+}
+
+class Tooltip extends Component {
+  constructor(closeNotifierFunction) {
+    super();
+    this.closeNotifier = closeNotifierFunction;
+    this.create();
+  }
+  //to close the tooltip
+  //use arrow function here as alternative to use the .bind method
+  //to pass the right this element
+  closeTooltip = () => {
+    this.detach();
+    this.closeNotifier();
+  };
+
+  create() {
     const tooltipElement = document.createElement("div");
     tooltipElement.className = "card";
     tooltipElement.textContent = "Dummy!!";
-    tooltipElement.addEventListener("click", this.detach);
+    tooltipElement.addEventListener("click", this.closeTooltip);
     this.element = tooltipElement;
-    document.body.append(tooltipElement);
   }
 }
 
 //to convert the element lists in to an object
 class ProjectItem {
+  hasActiveTooltip = false;
+
   //to be able to use the method switchProject from the ProjectList class I need to pass it as parameter
   constructor(id, updateProjectListFunction, type) {
     this.id = id;
@@ -44,8 +77,14 @@ class ProjectItem {
   }
 
   showMoreInfoHandler() {
-    const tooltip = new Tooltip();
+    if (this.hasActiveTooltip) {
+      return;
+    }
+    const tooltip = new Tooltip(() => {
+      this.hasActiveTooltip = false;
+    });
     tooltip.attach();
+    this.hasActiveTooltip = true;
   }
 
   connectMoreInfoButton() {

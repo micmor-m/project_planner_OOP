@@ -64,10 +64,12 @@ class Tooltip extends Component {
     const hostElPosTop = this.hostElement.offsetTop;
     //and its height
     const hostElHeight = this.hostElement.offsetHeight;
+    //to get the scrollTop move to the parent element which is the one with the scrolling bar
+    const parentElementScrolling = this.hostElement.parentElement.scrollTop;
 
     //with this position I can position the tooltip
     const x = hostElPosLeft + 20;
-    const y = hostElPosTop + hostElHeight - 10;
+    const y = hostElPosTop + hostElHeight - parentElementScrolling - 10;
 
     tooltipElement.style.position = "absolute";
     tooltipElement.style.left = x + "px";

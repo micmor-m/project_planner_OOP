@@ -8,11 +8,27 @@ const anotherButtonClickHandler = () => {
   console.log("This was clicked!");
 };
 
-button.addEventListener("click", buttonClickHandler);
+//button.addEventListener("click", buttonClickHandler);
 
-setTimeout(() => {
-  button.removeEventListener("click", buttonClickHandler);
-}, 2000);
+// setTimeout(() => {
+//   button.removeEventListener("click", buttonClickHandler);
+// }, 2000);
+
+//example of capturing and bubbling face
+button.addEventListener("click", (event) => {
+  console.log("BUTTON");
+  console.log(event);
+});
+
+const div = document.querySelector("div");
+div.addEventListener(
+  "click",
+  (event) => {
+    console.log("DIV");
+    console.log(event);
+  }
+  // true
+);
 
 //infinite scrolling example
 //zom-in the browser to let the vertical scroll appear

@@ -15,9 +15,10 @@ const anotherButtonClickHandler = () => {
 // }, 2000);
 
 //example of capturing and bubbling face
-button.addEventListener("click", (event) => {
+button.addEventListener("click", function (event) {
   console.log("BUTTON");
   console.log(event);
+  console.log(this);
 });
 
 const div = document.querySelector("div");
@@ -73,4 +74,7 @@ const list = document.querySelector("ul");
 //if the li element has child elements the best way to target the li element is by traversal method
 list.addEventListener("click", (event) => {
   event.target.closest("li").classList.toggle("highlight");
+  //to execute a method on a different DOM element
+  //form.submit();
+  button.click();
 });

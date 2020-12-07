@@ -53,3 +53,24 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   console.log(event);
 });
+
+//add event listener to all li elements
+//not best way in term of memory and perfrmance
+const listItems = document.querySelectorAll("li");
+// listItems.forEach((listItem) => {
+//   listItem.addEventListener("click", (event) => {
+//     console.log(event.classList);
+//     event.target.classList.toggle("highlight");
+//   });
+// });
+
+//access all li by only one eventListener using event delegation
+const list = document.querySelector("ul");
+//this approc is corrent if the li element does not have child element
+// list.addEventListener("click", (event) => {
+//   event.target.classList.toggle("highlight");
+// });
+//if the li element has child elements the best way to target the li element is by traversal method
+list.addEventListener("click", (event) => {
+  event.target.closest("li").classList.toggle("highlight");
+});

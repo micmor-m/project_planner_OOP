@@ -1,5 +1,8 @@
+import { DOMHelper } from "../Utility/DOMHelper.js";
+import { Tooltip } from "./Tooltip.js";
+
 //to convert the element lists in to an object
-class ProjectItem {
+export class ProjectItem {
   hasActiveTooltip = false;
 
   //to be able to use the method switchProject from the ProjectList class I need to pass it as parameter

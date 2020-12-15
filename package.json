@@ -1,0 +1,22 @@
+{
+  "name": "project_planner_oop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micmor-m/project_planner_OOP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/micmor-m/project_planner_OOP/issues"
+  },
+  "homepage": "https://github.com/micmor-m/project_planner_OOP#readme",
+  "devDependencies": {
+    "eslint": "^7.15.0"
+  }
+}

@@ -1,3 +1,5 @@
+import { ProjectList } from "./App/ProjectList.js";
+
 //create an App object to use to start the program
 class App {
   static init() {

@@ -3,11 +3,12 @@ import { Tooltip } from "./Tooltip.js";
 
 //to convert the element lists in to an object
 export class ProjectItem {
-  hasActiveTooltip = false;
+  //hasActiveTooltip = false;
 
   //to be able to use the method switchProject from the ProjectList class I need to pass it as parameter
   constructor(id, updateProjectListFunction, type) {
     this.id = id;
+    this.hasActiveTooltip = false;
     this.updateProjectListHandler = updateProjectListFunction;
     this.connectSwitchButton(type);
     this.connectMoreInfoButton();

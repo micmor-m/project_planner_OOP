@@ -5,15 +5,15 @@ export class Tooltip extends Component {
     super(hostElement);
     this.closeNotifier = closeNotifierFunction;
     this.text = text;
+    //to close the tooltip
+    //use arrow function here as alternative to use the .bind method
+    //to pass the right this element
+    this.closeTooltip = () => {
+      this.detach();
+      this.closeNotifier();
+    };
     this.create();
   }
-  //to close the tooltip
-  //use arrow function here as alternative to use the .bind method
-  //to pass the right this element
-  closeTooltip = () => {
-    this.detach();
-    this.closeNotifier();
-  };
 
   create() {
     const tooltipElement = document.createElement("div");

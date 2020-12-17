@@ -2,9 +2,10 @@ import { ProjectItem } from "./ProjectItem.js";
 import { DOMHelper } from "../Utility/DOMHelper.js";
 
 export class ProjectList {
-  projects = [];
+  //projects = [];
   constructor(type) {
     this.type = type;
+    this.projects = [];
     //parse all elements in the type of list I need
     const prjItems = document.querySelectorAll(`#${type}-projects li`);
     for (const prjItem of prjItems) {
